@@ -157,7 +157,7 @@ export async function claimGift(
   // Verify the hashlock
   const providedHash = hashSecret(secret);
   if (providedHash !== gift.secretHash) {
-    throw new AppError('FORBIDDEN', 'Invalid secret — lì xì locked', 403);
+    throw new AppError('FORBIDDEN', 'Invalid secret — lucky money locked', 403);
   }
 
   const now = new Date();

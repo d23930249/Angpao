@@ -14,6 +14,8 @@ import {
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { publicEnv } from '@/server/config/env.public';
+import { explorerContractUrl, networkLabel } from '@/ui/lib/explorer';
 import type { OnChainEnvelope, SplitMode } from '@/ui/hooks/useEscrow';
 import { useEscrow } from '@/ui/hooks/useEscrow';
 import { Badge } from '@/ui/components/ui/badge';
@@ -33,8 +35,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/components/ui/tab
 const STATUS_LABELS = ['Active', 'Completed', 'Refunded'];
 const SPLIT_LABELS = ['Equal', 'Random'];
 
-function explorerContractUrl(contractId: string): string {
-  return `https://stellar.expert/explorer/testnet/contract/${contractId}`;
+const STELLAR_NETWORK = publicEnv.NEXT_PUBLIC_STELLAR_NETWORK;
+
+/** Fire-and-forget: log an on-chain action so it shows in the wallet activity. */
+function recordActivity(body: {
+  action: 'create' | 'open' | 'refund';
+  envelopeId?: string;
+  asset: string;
+  amount?: string;
+}) {
+  fetch('/api/escrow/activity', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    credentials: 'include',
+  }).catch(() => {});
 }
 
 function CopyButton({ value, label }: { value: string; label: string }) {
@@ -138,6 +153,7 @@ export function OnchainClient() {
         split,
       });
       setCreated({ envelopeId: r.envelopeId, secret: r.secret });
+      recordActivity({ action: 'create', envelopeId: r.envelopeId, asset: activeAsset.code, amount });
       toast.success(t('createdToast', { id: r.envelopeId }));
     } catch (err) {
       toast.error(err instanceof Error ? err.message : t('genericError'));
@@ -153,6 +169,12 @@ export function OnchainClient() {
       const e = await lookupEnvelope(id).catch(() => null);
       const a = e ? assetByToken(e.token) : activeAsset;
       setClaimed({ amount: r.amount, code: a.code, decimals: a.decimals });
+      recordActivity({
+        action: 'open',
+        envelopeId: String(id),
+        asset: a.code,
+        amount: fmt(r.amount, a.decimals),
+      });
       toast.success(t('claimedToast'));
     } catch (err) {
       toast.error(err instanceof Error ? err.message : t('genericError'));
@@ -188,10 +210,12 @@ export function OnchainClient() {
           <Badge variant="outline" className="font-mono">
             {config.contractId.slice(0, 6)}…{config.contractId.slice(-4)}
           </Badge>
-          <span className="text-muted-foreground">{t('liveOnTestnet')}</span>
+          <span className="text-muted-foreground">
+            {t('liveOnNetwork', { network: networkLabel(STELLAR_NETWORK) })}
+          </span>
           <a
             className="ml-auto inline-flex items-center gap-1 text-red-600 hover:underline"
-            href={explorerContractUrl(config.contractId)}
+            href={explorerContractUrl(STELLAR_NETWORK, config.contractId)}
             target="_blank"
             rel="noreferrer"
           >

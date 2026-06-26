@@ -1,5 +1,7 @@
-import { OnchainClient } from '@/ui/components/pages/onchain-client';
+import { redirect } from '@/i18n/routing';
 
-export default function EnvelopesPage() {
-  return <OnchainClient />;
+// Consolidated into the single gift page at /dashboard.
+export default async function EnvelopesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  redirect({ href: '/dashboard', locale });
 }

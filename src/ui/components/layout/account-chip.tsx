@@ -4,6 +4,8 @@ import { Check, ChevronDown, Copy, ExternalLink, Loader2, LogOut, Wallet } from 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
+import { publicEnv } from '@/server/config/env.public';
+import { explorerAccountUrl, networkLabel } from '@/ui/lib/explorer';
 import { Button } from '@/ui/components/ui/button';
 import {
   DropdownMenu,
@@ -139,7 +141,11 @@ export function AccountChip() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
         <DropdownMenuLabel className="font-normal">
-          <p className="text-xs text-muted-foreground">{t('freighterStellar')}</p>
+          <p className="text-xs text-muted-foreground">
+            {t('freighterOnNetwork', {
+              network: networkLabel(publicEnv.NEXT_PUBLIC_STELLAR_NETWORK),
+            })}
+          </p>
           <p className="mt-1 break-all font-mono text-xs">{session.publicKey}</p>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -153,7 +159,7 @@ export function AccountChip() {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <a
-            href={`https://stellar.expert/explorer/testnet/account/${session.publicKey}`}
+            href={explorerAccountUrl(publicEnv.NEXT_PUBLIC_STELLAR_NETWORK, session.publicKey)}
             target="_blank"
             rel="noreferrer"
           >

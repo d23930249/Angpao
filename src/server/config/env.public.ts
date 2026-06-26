@@ -7,6 +7,8 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_SUPPORTED_LOCALES: z.string().default('en,vi'),
   NEXT_PUBLIC_DEFAULT_LOCALE: z.string().default('en'),
   NEXT_PUBLIC_LOCALE_PREFIX: z.enum(['always', 'as-needed', 'never']).default('as-needed'),
+  /** Stellar network the client renders for (explorer links, network badge). */
+  NEXT_PUBLIC_STELLAR_NETWORK: z.enum(['testnet', 'public', 'futurenet']).default('testnet'),
   NEXT_PUBLIC_OFFRAMP_ANCHOR_DOMAIN: z.string().default('mock'),
   NEXT_PUBLIC_USDC_ASSET_CODE: z.string().default('USDC'),
   NEXT_PUBLIC_DEMO_MODE: z
@@ -29,6 +31,7 @@ const parsed = publicEnvSchema.safeParse({
   NEXT_PUBLIC_SUPPORTED_LOCALES: process.env.NEXT_PUBLIC_SUPPORTED_LOCALES,
   NEXT_PUBLIC_DEFAULT_LOCALE: process.env.NEXT_PUBLIC_DEFAULT_LOCALE,
   NEXT_PUBLIC_LOCALE_PREFIX: process.env.NEXT_PUBLIC_LOCALE_PREFIX,
+  NEXT_PUBLIC_STELLAR_NETWORK: process.env.NEXT_PUBLIC_STELLAR_NETWORK,
   NEXT_PUBLIC_OFFRAMP_ANCHOR_DOMAIN: process.env.NEXT_PUBLIC_OFFRAMP_ANCHOR_DOMAIN,
   NEXT_PUBLIC_USDC_ASSET_CODE: process.env.NEXT_PUBLIC_USDC_ASSET_CODE,
   NEXT_PUBLIC_DEMO_MODE: process.env.NEXT_PUBLIC_DEMO_MODE,

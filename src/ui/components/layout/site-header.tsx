@@ -21,9 +21,6 @@ export async function SiteHeader() {
           <Link href="/wallet" className="text-muted-foreground hover:text-foreground">
             {t('wallet')}
           </Link>
-          <Link href="/envelopes" className="text-muted-foreground hover:text-foreground">
-            {t('onchain')}
-          </Link>
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher />

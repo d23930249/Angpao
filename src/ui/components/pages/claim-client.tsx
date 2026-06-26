@@ -65,7 +65,7 @@ export function ClaimClient({ giftId, initialSecret = '' }: ClaimClientProps) {
       const json = await res.json();
       if (!json.ok) throw new Error(json.error?.message ?? 'Claim failed');
       setClaimed(true);
-      setClaimMessage(json.data.message ?? `Lì xì opened! ${json.data.gift.amountUsdc} USDC claimed!`);
+      setClaimMessage(json.data.message ?? `Lucky money opened! ${json.data.gift.amountUsdc} USDC claimed!`);
       toast.success('🧧 Envelope opened!');
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to claim');
@@ -93,7 +93,7 @@ export function ClaimClient({ giftId, initialSecret = '' }: ClaimClientProps) {
           <p className="mt-2 text-lg font-semibold text-foreground">{claimMessage}</p>
           {gift && (
             <p className="mt-1 text-sm text-muted-foreground">
-              From: {gift.recipientName}'s lì xì
+              From: {gift.recipientName}'s lucky money
             </p>
           )}
         </CardContent>

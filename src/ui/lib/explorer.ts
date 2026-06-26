@@ -18,6 +18,24 @@ export function explorerAccountUrl(network: string, address: string): string {
   return `${base}/${address}`;
 }
 
+export function explorerContractUrl(network: string, contractId: string): string {
+  const base =
+    network === 'public'
+      ? 'https://stellar.expert/explorer/public/contract'
+      : network === 'testnet'
+        ? 'https://stellar.expert/explorer/testnet/contract'
+        : 'https://stellar.expert/explorer/futurenet/contract';
+  return `${base}/${contractId}`;
+}
+
+/** Human label for a Stellar network — 'public' is "Mainnet". */
+export function networkLabel(network: string): string {
+  if (network === 'public') return 'Mainnet';
+  if (network === 'testnet') return 'Testnet';
+  if (network === 'futurenet') return 'Futurenet';
+  return network;
+}
+
 export function timeUntil(iso: string): string {
   const ms = new Date(iso).getTime() - Date.now();
   if (ms <= 0) return 'expired';

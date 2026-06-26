@@ -41,7 +41,7 @@ function toMinorUnits(amount: string, decimals: number): string {
 function asAppError(err: unknown, assetCode = 'the asset'): never {
   if (err instanceof AppError) throw err;
   const raw = err instanceof Error ? err.message : String(err);
-  let message = `On-chain simulation failed. Make sure your wallet holds enough ${assetCode} (and a trustline if required) and is on Stellar Testnet.`;
+  let message = `On-chain simulation failed. Make sure your wallet holds enough ${assetCode} (and a trustline if required) and is on the correct Stellar network.`;
   if (/trustline|no trust|op_no_trust/i.test(raw)) {
     message = `Your wallet is missing a ${assetCode} trustline. Add it (or fund the asset) and try again.`;
   } else if (/underfunded|insufficient|balance/i.test(raw)) {

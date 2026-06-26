@@ -127,6 +127,6 @@ export async function claimGiftHandler(
       createdAt: gift.createdAt.toISOString(),
       updatedAt: gift.updatedAt.toISOString(),
     },
-    message: `Lì xì opened! ${formatUsdcAmount(gift.amountMinor)} USDC claimed!`,
+    message: `Lucky money opened! ${formatUsdcAmount(gift.amountMinor)} USDC claimed!`,
   });
 }

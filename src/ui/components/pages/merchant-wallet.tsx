@@ -1,9 +1,9 @@
 'use client';
 
-import { ArrowLeftRight, ArrowUpToLine, Banknote, LogOut } from 'lucide-react';
+import { ArrowLeftRight, ArrowUpToLine, Banknote, Lock, LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
 import { SectionCard } from '@/ui/components/shared/section-card';
 import { StatusBadge } from '@/ui/components/shared/status-badge';
@@ -27,8 +27,30 @@ export function MerchantWalletClient() {
   const { stats, loading: statsLoading } = useMerchantStats();
   const { merchant } = useMerchant();
   const { withdrawals } = useWithdrawals();
-  const [activityTab, setActivityTab] = useState<'payments' | 'cashout'>('payments');
+  const [activityTab, setActivityTab] = useState<'onchain' | 'cashout'>('onchain');
   const pk = session.publicKey;
+
+  type OnchainItem = {
+    id: string;
+    action: 'create' | 'open' | 'refund';
+    envelopeId: string | null;
+    asset: string;
+    amount: string | null;
+    createdAt: string;
+  };
+  const [onchain, setOnchain] = useState<OnchainItem[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/escrow/activity', { credentials: 'include' })
+      .then((r) => r.json())
+      .then((j) => {
+        if (!cancelled && j.ok) setOnchain(j.data.activity as OnchainItem[]);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const onDisconnect = async () => {
     await logout();
@@ -159,7 +181,7 @@ export function MerchantWalletClient() {
 
       <div className="space-y-2">
         <div className="flex items-center gap-1 rounded-full bg-muted p-1">
-          {(['payments', 'cashout'] as const).map((tab) => (
+          {(['onchain', 'cashout'] as const).map((tab) => (
             <button
               key={tab}
               type="button"
@@ -171,40 +193,53 @@ export function MerchantWalletClient() {
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
-              {tab === 'payments' ? t('recentActivity') : 'Cash Out Activity'}
+              {tab === 'onchain' ? t('recentActivity') : 'Cash Out'}
             </button>
           ))}
         </div>
 
         <Card>
           <CardContent className="p-0">
-            {activityTab === 'payments' ? (
-              stats && stats.recentSettlements.length > 0 ? (
+            {activityTab === 'onchain' ? (
+              onchain.length > 0 ? (
                 <ul className="divide-y divide-border">
-                  {stats.recentSettlements.map((s) => (
-                    <li key={s.id} className="flex items-center justify-between p-4">
-                      <div>
-                        <p className="text-sm font-medium text-foreground">
-                          Settlement #{s.invoiceId.slice(0, 6)}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {new Date(s.createdAt).toLocaleString()}
-                        </p>
+                  {onchain.map((a) => (
+                    <li key={a.id} className="flex items-center justify-between p-4">
+                      <div className="flex items-center gap-2">
+                        <Lock className="h-4 w-4 text-red-600" />
+                        <div>
+                          <p className="text-sm font-medium text-foreground">
+                            {a.action === 'create'
+                              ? 'Created envelope'
+                              : a.action === 'open'
+                                ? 'Opened envelope'
+                                : 'Refunded envelope'}
+                            {a.envelopeId ? ` #${a.envelopeId}` : ''}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(a.createdAt).toLocaleString()}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="tnum text-sm font-medium text-foreground">
-                          +{formatAmount(s.amountMinor)} USDC
-                        </p>
-                        <StatusBadge
-                          status={s.completedAt ? 'settled' : 'pending'}
-                          className="mt-1"
-                        />
-                      </div>
+                      <p
+                        className={cn(
+                          'tnum text-sm font-medium',
+                          a.action === 'open' || a.action === 'refund'
+                            ? 'text-success'
+                            : 'text-foreground',
+                        )}
+                      >
+                        {a.amount
+                          ? `${a.action === 'open' || a.action === 'refund' ? '+' : '−'}${a.amount} ${a.asset}`
+                          : '—'}
+                      </p>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="p-6 text-center text-sm text-muted-foreground">{t('noActivity')}</p>
+                <p className="p-6 text-center text-sm text-muted-foreground">
+                  {t('noActivity')} Create or open a red envelope to see it here.
+                </p>
               )
             ) : withdrawals.length > 0 ? (
               <ul className="divide-y divide-border">

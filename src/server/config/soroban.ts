@@ -6,7 +6,7 @@ export interface EscrowAsset {
   code: string;
   /** Stellar Asset Contract (SAC) id holding the asset. */
   tokenId: string;
-  /** Decimal places (XLM = 7, USDC = 6). */
+  /** Decimal places — Stellar SACs use 7 (XLM and classic-asset USDC alike). */
   decimals: number;
 }
 

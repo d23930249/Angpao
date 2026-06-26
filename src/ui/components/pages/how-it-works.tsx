@@ -8,14 +8,16 @@ import {
   Gift,
   Lock,
   PackageOpen,
-  QrCode,
   RotateCcw,
+  Send,
   ShieldCheck,
   Sparkles,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
+import { publicEnv } from '@/server/config/env.public';
+import { explorerContractUrl } from '@/ui/lib/explorer';
 import { Button } from '@/ui/components/ui/button';
 import { GradientBg } from '@/ui/components/shared/gradient-bg';
 import { LanguageSwitcher } from '@/ui/components/shared/language-switcher';
@@ -40,7 +42,7 @@ export function HowItWorks() {
 
   const steps = [
     { icon: Gift, title: t('step1Title'), desc: t('step1Desc') },
-    { icon: QrCode, title: t('step2Title'), desc: t('step2Desc') },
+    { icon: Send, title: t('step2Title'), desc: t('step2Desc') },
     { icon: Sparkles, title: t('step3Title'), desc: t('step3Desc') },
   ];
 
@@ -129,7 +131,7 @@ export function HowItWorks() {
               </code>
               <a
                 className="ml-auto inline-flex items-center gap-1 text-red-600 hover:underline"
-                href={`https://stellar.expert/explorer/testnet/contract/${contractId}`}
+                href={explorerContractUrl(publicEnv.NEXT_PUBLIC_STELLAR_NETWORK, contractId)}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -151,7 +153,7 @@ export function HowItWorks() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="h-11 rounded-full px-6 text-sm">
-            <Link href="/envelopes">
+            <Link href="/dashboard">
               <PackageOpen className="mr-2 h-4 w-4" />
               {t('ctaSecondary')}
             </Link>

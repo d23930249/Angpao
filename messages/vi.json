@@ -8,7 +8,15 @@
     "title": "Gửi yêu thương,\ngửi USDC.",
     "subtitle": "Bọc USDC trong phong bao lì xì kỹ thuật số — bảo mật bằng Soroban hashlock trên Stellar.",
     "ctaPrimary": "Gửi lì xì",
-    "ctaSecondary": "Tìm hiểu thêm"
+    "ctaSecondary": "Tìm hiểu thêm",
+    "howEyebrow": "Cách hoạt động",
+    "howTitle": "Ba bước gửi lì xì",
+    "s1Title": "Bọc",
+    "s1Desc": "Chọn số tiền và loại tài sản (USDC hoặc XLM). Angpao khóa vào escrow on-chain sau một mã bí mật SHA-256.",
+    "s2Title": "Chia sẻ",
+    "s2Desc": "Gửi mã phong bao và mã bí mật cho người nhận — qua WhatsApp, Zalo hoặc trực tiếp.",
+    "s3Title": "Mở",
+    "s3Desc": "Người nhận kết nối ví, lộ mã bí mật, và escrow giải phóng tiền. Lì xì mở rồi!"
   },
   "HowItWorks": {
     "back": "Quay lại",
@@ -39,9 +47,10 @@
     "ctaSecondary": "Thử phong bao on-chain"
   },
   "Onchain": {
-    "title": "Phong bao on-chain",
-    "subtitle": "Tạo, mở và tra cứu phong bao USDC do contract escrow Soroban giữ.",
+    "title": "Phong bao lì xì",
+    "subtitle": "Tạo, mở và tra cứu phong bao lì xì do contract escrow Soroban trên blockchain giữ.",
     "liveOnTestnet": "Đang chạy trên Stellar Testnet",
+    "liveOnNetwork": "Đang chạy trên Stellar {network}",
     "viewOnExplorer": "Xem trên explorer",
     "tabCreate": "Tạo",
     "tabClaim": "Mở",
@@ -146,6 +155,7 @@
   },
   "Account": {
     "freighterStellar": "Freighter (Stellar)",
+    "freighterOnNetwork": "Freighter · Stellar {network}",
     "copyAddress": "Sao chép địa chỉ",
     "copied": "Đã sao chép",
     "copyFailed": "Sao chép thất bại",

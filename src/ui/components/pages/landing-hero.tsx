@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Gift, Lock, QrCode, Sparkles } from 'lucide-react';
+import { ArrowRight, Gift, Lock, Send, Sparkles, Unlock } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/ui/components/ui/button';
@@ -33,7 +33,7 @@ export function LandingHero() {
               size="lg"
               className="h-11 rounded-full bg-red-600 px-6 text-sm font-semibold text-white hover:bg-red-700"
             >
-              <Link href="/connect">
+              <Link href="/dashboard">
                 {t('ctaPrimary')} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -86,9 +86,9 @@ export function LandingHero() {
                 </p>
               </div>
               <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/70 px-4 py-3 dark:bg-white/10">
-                <QrCode className="h-4 w-4 text-muted-foreground" />
+                <Unlock className="h-4 w-4 text-muted-foreground" />
                 <p className="text-xs text-muted-foreground">
-                  Scan QR → enter secret → USDC claimed!
+                  Reveal the secret → funds released on-chain
                 </p>
               </div>
             </div>
@@ -99,31 +99,14 @@ export function LandingHero() {
       {/* How it works section */}
       <div id="how-it-works" className="mt-24">
         <p className="mb-2 text-center text-xs uppercase tracking-widest text-red-600">
-          How it works
+          {t('howEyebrow')}
         </p>
-        <h2 className="mb-10 text-center text-3xl font-bold text-foreground">
-          Three steps to send lì xì
-        </h2>
+        <h2 className="mb-10 text-center text-3xl font-bold text-foreground">{t('howTitle')}</h2>
         <div className="grid gap-6 sm:grid-cols-3">
           {[
-            {
-              icon: Gift,
-              step: '01',
-              title: 'Wrap',
-              desc: 'Enter recipient name, USDC amount, and a secret message. Angpao locks it with a SHA-256 hashlock.',
-            },
-            {
-              icon: QrCode,
-              step: '02',
-              title: 'Share QR',
-              desc: "Share the QR code or claim link via WhatsApp, Zalo, or print it. The recipient sees the red envelope.",
-            },
-            {
-              icon: Sparkles,
-              step: '03',
-              title: 'Claim',
-              desc: "Recipient scans QR, enters the secret, and USDC is released from the Stellar claimable balance. Lì xì opened!",
-            },
+            { icon: Gift, step: '01', title: t('s1Title'), desc: t('s1Desc') },
+            { icon: Send, step: '02', title: t('s2Title'), desc: t('s2Desc') },
+            { icon: Sparkles, step: '03', title: t('s3Title'), desc: t('s3Desc') },
           ].map(({ icon: Icon, step, title, desc }) => (
             <div
               key={step}

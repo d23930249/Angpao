@@ -6,9 +6,17 @@
   "Hero": {
     "eyebrow": "Angpao",
     "title": "Send love,\nsend USDC.",
-    "subtitle": "Wrap USDC in a digital red envelope — lì xì for Tet, angpao for Imlek. Secured by Soroban hashlock on Stellar.",
+    "subtitle": "Wrap USDC in a digital red envelope — lucky money for Tet, angpao for Imlek. Secured by Soroban hashlock on Stellar.",
     "ctaPrimary": "Send a gift",
-    "ctaSecondary": "Learn how it works"
+    "ctaSecondary": "Learn how it works",
+    "howEyebrow": "How it works",
+    "howTitle": "Three steps to send lucky money",
+    "s1Title": "Wrap",
+    "s1Desc": "Pick an amount and asset (USDC or XLM). Angpao locks it in an on-chain escrow behind a SHA-256 secret.",
+    "s2Title": "Share",
+    "s2Desc": "Send the envelope id and the secret to your recipient — over WhatsApp, Zalo, or in person.",
+    "s3Title": "Open",
+    "s3Desc": "The recipient connects their wallet, reveals the secret, and the escrow releases the funds. Lucky money opened!"
   },
   "HowItWorks": {
     "back": "Back",
@@ -39,9 +47,10 @@
     "ctaSecondary": "Try an on-chain envelope"
   },
   "Onchain": {
-    "title": "On-chain envelopes",
-    "subtitle": "Create, open, and inspect USDC red envelopes held by the Soroban escrow contract.",
+    "title": "Red envelopes",
+    "subtitle": "Create, open, and inspect red envelopes held by the on-chain Soroban escrow contract.",
     "liveOnTestnet": "Live on Stellar Testnet",
+    "liveOnNetwork": "Live on Stellar {network}",
     "viewOnExplorer": "View on explorer",
     "tabCreate": "Create",
     "tabClaim": "Open",
@@ -236,7 +245,7 @@
     "messagePlaceholder": "Chúc mừng năm mới! Happy New Year!",
     "create": "Wrap Envelope",
     "created": "Red envelope created!",
-    "empty": "No red envelopes yet. Send your first lì xì!",
+    "empty": "No red envelopes yet. Send your first lucky money!",
     "status": {
       "pending": "Pending",
       "funded": "Funded",
@@ -263,7 +272,7 @@
     "destinationLabel": "Your Stellar address",
     "claimButton": "Open envelope",
     "claiming": "Opening…",
-    "claimSuccess": "Lì xì opened! {amount} USDC claimed!",
+    "claimSuccess": "Lucky money opened! {amount} USDC claimed!",
     "invalidSecret": "Wrong secret — envelope stays locked",
     "alreadyClaimed": "This envelope has already been opened"
   },
@@ -277,13 +286,14 @@
     "pending": "Pending",
     "gifts": "Gifts Sent",
     "recentGifts": "Recent red envelopes",
-    "noGifts": "No red envelopes yet. Send your first lì xì!",
+    "noGifts": "No red envelopes yet. Send your first lucky money!",
     "notConnected": "Not connected",
     "notConnectedHint": "Connect a Stellar wallet to send and manage your red envelopes.",
     "connect": "Connect"
   },
   "Account": {
     "freighterStellar": "Freighter · Stellar Testnet",
+    "freighterOnNetwork": "Freighter · Stellar {network}",
     "copyAddress": "Copy address",
     "copied": "Address copied",
     "copyFailed": "Could not copy",

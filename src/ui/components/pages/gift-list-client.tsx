@@ -79,7 +79,7 @@ export function GiftListClient() {
           <Gift className="mx-auto mb-3 h-10 w-10 text-red-300" />
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
           <Button asChild className="mt-4 bg-red-600 text-white hover:bg-red-700">
-            <Link href="/gifts/new">Send your first lì xì</Link>
+            <Link href="/gifts/new">Send your first lucky money</Link>
           </Button>
         </CardContent>
       </Card>

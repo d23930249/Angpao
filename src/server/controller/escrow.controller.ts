@@ -16,6 +16,7 @@ import {
   hasUsdcTrustline,
   submitTrustline,
 } from '@/server/service/trustline.service';
+import { listActivity, recordActivity } from '@/server/service/escrowActivity.service';
 
 const createSchema = z.object({
   amount: z.string().regex(/^\d+(\.\d{1,7})?$/, 'Invalid amount'),
@@ -131,6 +132,43 @@ export async function submitTrustlineHandler(
   const body = submitSchema.parse(await req.json());
   const { hash } = await submitTrustline(body.signedXdr);
   return ok({ txHash: hash });
+}
+
+const recordSchema = z.object({
+  action: z.enum(['create', 'open', 'refund']),
+  envelopeId: z.string().max(40).optional(),
+  asset: z.string().max(12),
+  amount: z.string().max(40).optional(),
+  txHash: z.string().max(80).optional(),
+});
+
+/** POST — record an on-chain escrow action for the caller's wallet. */
+export async function recordActivityHandler(
+  req: NextRequest,
+  ctx: { publicKey: string },
+): Promise<ReturnType<typeof ok>> {
+  const body = recordSchema.parse(await req.json());
+  await recordActivity({ account: ctx.publicKey, ...body });
+  return ok({ recorded: true });
+}
+
+/** GET — the caller wallet's recent on-chain escrow activity. */
+export async function listActivityHandler(
+  _req: NextRequest,
+  ctx: { publicKey: string },
+): Promise<ReturnType<typeof ok>> {
+  const rows = await listActivity(ctx.publicKey);
+  return ok({
+    activity: rows.map((r) => ({
+      id: r.id,
+      action: r.action,
+      envelopeId: r.envelopeId,
+      asset: r.asset,
+      amount: r.amount,
+      txHash: r.txHash,
+      createdAt: r.createdAt.toISOString(),
+    })),
+  });
 }
 
 /** GET — read a single envelope's on-chain state. */

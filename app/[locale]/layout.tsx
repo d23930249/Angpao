@@ -54,7 +54,7 @@ export async function generateMetadata({
     },
     description,
     applicationName: brandEyebrow,
-    keywords: ['Stellar', 'USDC', 'gift', 'red envelope', 'lì xì', 'Tet', 'angpao'],
+    keywords: ['Stellar', 'USDC', 'gift', 'red envelope', 'lucky money', 'lì xì', 'Tet', 'angpao'],
     authors: [{ name: brandEyebrow }],
     generator: 'Next.js',
     alternates: {
