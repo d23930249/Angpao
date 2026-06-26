@@ -1,0 +1,11 @@
+# Rust / Soroban build artifacts — never deploy these to the Next app.
+contracts/target
+**/target
+**/*.wasm
+
+# Local tooling
+.rustup
+screen-shot
+tests
+playwright-report
+test-results
