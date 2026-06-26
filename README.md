@@ -136,7 +136,6 @@ docs/               Architecture & API docs
 
 - [`contracts/README.md`](contracts/README.md) — the Soroban escrow contract (the advanced core)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — system architecture
-- [`CLAUDE.md`](CLAUDE.md) — invariants & conventions
 
 ---
 
