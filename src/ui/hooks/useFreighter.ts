@@ -2,7 +2,6 @@
 
 import {
   getAddress as freighterGetAddress,
-  getNetworkDetails as freighterGetNetworkDetails,
   isConnected as freighterIsConnected,
   requestAccess as freighterRequestAccess,
   signTransaction as freighterSignTransaction,
@@ -148,11 +147,13 @@ export function useFreighter() {
     async (entryXdr: string) => {
       const pk = state.publicKey;
       if (!pk) throw new Error('Wallet not connected');
-      const { networkPassphrase } = await withTimeout(
-        freighterGetNetworkDetails(),
-        AVAILABILITY_TIMEOUT_MS,
-        'getNetworkDetails',
-      );
+      // Pin the signing passphrase to the app's own network, NOT the user's
+      // Freighter network. If the user's wallet is on Mainnet, signing with the
+      // Public passphrase makes the SEP-10 verify (built with TESTNET) fail 401.
+      const networkPassphrase =
+        process.env.NEXT_PUBLIC_STELLAR_NETWORK === 'public'
+          ? 'Public Global Stellar Network ; September 2015'
+          : 'Test SDF Network ; September 2015';
       const result = await withTimeout(
         freighterSignTransaction(entryXdr, { address: pk, networkPassphrase }),
         SIGN_TIMEOUT_MS,

@@ -8,11 +8,10 @@ import { Card, CardContent } from '@/ui/components/ui/card';
 
 interface Stats {
   uniqueWallets: number;
-  totalLogins: number;
+  logins: number;
   totalGifts: number;
   giftSenders: number;
   onchainEnvelopes: number | null;
-  perDay: Array<{ date: string; users: number; logins: number }>;
   generatedAt: string;
 }
 
@@ -65,8 +64,6 @@ export function StatsClient() {
     load();
   }, [load]);
 
-  const maxDay = stats?.perDay.reduce((m, d) => Math.max(m, d.logins), 0) ?? 0;
-
   return (
     <main className="mx-auto max-w-4xl px-4 py-10">
       <div className="flex items-center justify-between">
@@ -76,7 +73,7 @@ export function StatsClient() {
           </Link>
           <h1 className="mt-1 text-2xl font-bold text-foreground">Usage metrics</h1>
           <p className="text-sm text-muted-foreground">
-            Real wallet users — demo seed data excluded.
+            Real activity — wallet sign-ins, on-chain envelopes, and gifts.
           </p>
         </div>
         <Button onClick={load} variant="outline" size="sm" disabled={loading}>
@@ -107,7 +104,7 @@ export function StatsClient() {
             <Metric
               icon={Send}
               label="Total logins"
-              value={stats.totalLogins}
+              value={stats.logins}
               hint="wallet sign-ins"
             />
             <Metric
@@ -118,34 +115,6 @@ export function StatsClient() {
             />
             <Metric icon={Gift} label="Gifts created" value={stats.totalGifts} />
             <Metric icon={Users} label="Gift senders" value={stats.giftSenders} />
-          </div>
-
-          <div className="mt-10">
-            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Daily activity (last 14 days)
-            </h2>
-            {stats.perDay.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No sign-ins yet.</p>
-            ) : (
-              <div className="space-y-1.5">
-                {stats.perDay.map((d) => (
-                  <div key={d.date} className="flex items-center gap-3 text-sm">
-                    <span className="w-24 shrink-0 font-mono text-xs text-muted-foreground">
-                      {d.date}
-                    </span>
-                    <div className="h-5 flex-1 overflow-hidden rounded bg-muted">
-                      <div
-                        className="h-full rounded bg-red-500"
-                        style={{ width: `${maxDay ? (d.logins / maxDay) * 100 : 0}%` }}
-                      />
-                    </div>
-                    <span className="w-28 shrink-0 text-right text-xs text-muted-foreground">
-                      {d.users} users · {d.logins} logins
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
           <p className="mt-8 text-xs text-muted-foreground">

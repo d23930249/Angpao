@@ -29,10 +29,13 @@ export default defineConfig({
     },
   ],
 
-  webServer: {
-    command: 'npm run dev',
-    url: `http://localhost:${process.env.PORT ?? 3000}`,
-    reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
-  },
+  // When PLAYWRIGHT_BASE_URL targets a remote (prod) URL, don't boot a local dev server.
+  webServer: process.env.PLAYWRIGHT_BASE_URL
+    ? undefined
+    : {
+        command: 'pnpm run dev',
+        url: `http://localhost:${process.env.PORT ?? 3000}`,
+        reuseExistingServer: !process.env.CI,
+        timeout: 60_000,
+      },
 })

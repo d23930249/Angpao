@@ -25,9 +25,9 @@ echo "▶ Network: $NETWORK   Identity: $IDENTITY"
 if ! stellar keys address "$IDENTITY" >/dev/null 2>&1; then
   echo "▶ Creating identity '$IDENTITY'…"
   if [ "$NETWORK" = "testnet" ]; then
-    stellar keys generate --global "$IDENTITY" --network testnet --fund
+    stellar keys generate "$IDENTITY" --network testnet --fund
   else
-    stellar keys generate --global "$IDENTITY"
+    stellar keys generate "$IDENTITY"
     echo "  Fund $(stellar keys address "$IDENTITY") on mainnet, then re-run."
     exit 1
   fi

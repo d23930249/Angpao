@@ -23,9 +23,7 @@
     "db:push": "dotenv -e .env.local -- drizzle-kit push --force",
     "db:push:ci": "dotenv -e .env.local -- drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "smoke": "tsx scripts/smoke.ts",
-    "seed": "dotenv -e .env.local -- tsx scripts/seed-demo.ts",
-    "demo": "npm run db:push && npm run seed && npm run dev"
+    "smoke": "tsx scripts/smoke.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
