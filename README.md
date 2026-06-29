@@ -15,7 +15,11 @@ redeemed, then the architecture, then deploy.
 ![Angpao landing](screen-shot/ui-01-landing-v2.jpg)
 
 ---
+## Demo & Pitch Deck
 
+- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/11JkGw3_6I39VOeuiL48h6ASEFs_40RiF/view?usp=drive_link)
+- **Pitch Deck:** [View Pitch Deck](https://drive.google.com/file/d/1Eiky8z-ek_HXKSJhUFMJnHdPZzfs6QBn/view?usp=drive_link)
+---
 ## Run it in 60 seconds
 
 Every command below is a real script in [`package.json`](package.json). The app uses **pnpm**.
