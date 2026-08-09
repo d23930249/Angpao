@@ -38,7 +38,7 @@ redeemed, then the architecture, then deploy.
 
 Submit your GitHub repository link below before the monthly deadline:
 
-**https://github.com/your-org/Angpao**
+**https://github.com/d23930249/Angpao
 
 ---
 ## Demo & Pitch Deck
@@ -193,11 +193,11 @@ Browser (React 19 / Next 16 App Router)
   src/ui/hooks/useFreighter.ts                 connect + signTransaction (Testnet-pinned)
         │  fetch + session cookie
         ▼
-Next.js route handlers (app/api/**)            JSON, never locale-prefixed (proxy.ts skips /api)
+Next.js route handlers (app/api/)            JSON, never locale-prefixed (proxy.ts skips /api)
   app/api/escrow/{create,claim,refund,submit,config,activity,trustline,[id]}/route.ts
         │  compose(withError, withAuth)
         ▼
-Controllers → Services (src/server/**)
+Controllers → Services (src/server/)
   escrow.controller.ts → escrow.service.ts → soroban/escrow.client.ts
         │                                        │ @stellar/stellar-sdk (build/simulate/submit)
         │  Drizzle ORM (pg)                       ▼
