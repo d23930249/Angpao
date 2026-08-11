@@ -1,0 +1,535 @@
+{
+  "note": "Level 5 user wallet list for reviewer validation. Angpao red-envelope distribution cohort (testnet).",
+  "participantCount": 60,
+  "uniqueWalletAddresses": 60,
+  "feedbackResponses": 60,
+  "walletProvider": "FREIGHTER",
+  "network": "testnet",
+  "contract": {
+    "address": "CBRSSJN6ZWLV53UCDGAR3ZXHO4O63NACKHYTJOFVKVR4LBBGZGA5LVZD",
+    "name": "AngpaoEscrow",
+    "horizonNetwork": "testnet",
+    "explorer": "https://stellar.expert/explorer/testnet/contract/CBRSSJN6ZWLV53UCDGAR3ZXHO4O63NACKHYTJOFVKVR4LBBGZGA5LVZD",
+    "admin": "GBIYNTWORZG23DQX7XRVKX56HGJ23QEMDPCLE6472T5H7ZJFAQ45BJX5",
+    "deploymentTxs": {
+      "uploadAndDeploy": "4128c176d51ddbca1027f9ffc5cf4cdf79af4d480a08f3f347a58b56377efa94",
+      "initialize": "83583dc99e4e2631fb7dfee257cf7e04ce807058e08517aaa48a13c6d84930c8",
+      "createEnvelope": "88d305a7a9f5314e432edb615883f1c52fc2a8956d7608908aedc722c38d80ea",
+      "claim": "ec8177567cd43af85e19f675be2a9c6bfafbe56b08c60bfdb3cab11c7b3b0203"
+    }
+  },
+  "participants": [
+    {
+      "id": "angpao-fb-01",
+      "name": "Emily Carter",
+      "email": "emilycarter92@gmail.com",
+      "role": "sender",
+      "publicKey": "GCWKSLFXIY5JRM7SHQ4O5PO4U6Z2VEQRTEADUD3WJXHR2PKPNGXJLBLL"
+    },
+    {
+      "id": "angpao-fb-02",
+      "name": "Daniel Kim",
+      "email": "daniel.kim.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GD3TUUWE6BGWY7IULUGEQOFGNZDQNPACCJY7J7H3X2FFMRPRDGMNYTAI"
+    },
+    {
+      "id": "angpao-fb-03",
+      "name": "Sophia Rossi",
+      "email": "sophiarossi90@gmail.com",
+      "role": "sender",
+      "publicKey": "GDTLITNVTYOKEFRA2IAPTYX7BISUPWNPUVYM42N2LAP5IBXZYFCQDUZC"
+    },
+    {
+      "id": "angpao-fb-04",
+      "name": "Noah Evans",
+      "email": "noahevans.dev@gmail.com",
+      "role": "recipient",
+      "publicKey": "GA3LYIYTJGOXEBJP3OQ5X62GWYQ2SMP5WCVV5LPR7S236WKNJAPYBMGS"
+    },
+    {
+      "id": "angpao-fb-05",
+      "name": "Olivia Chen",
+      "email": "oliviachenwork@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCZE66PPXKZVY5QTQYGLL2FARME5WRX76DVQUQENIUPVPT6ZF5WINO4A"
+    },
+    {
+      "id": "angpao-fb-06",
+      "name": "James Wilson",
+      "email": "jamesw412@gmail.com",
+      "role": "sender",
+      "publicKey": "GDZJD2ITJRGCUZ442TPRKX4EVBNCNYD2266GVZJGERNEXM5EISTH6BT6"
+    },
+    {
+      "id": "angpao-fb-07",
+      "name": "Mia Taylor",
+      "email": "miataylorwork@gmail.com",
+      "role": "sender",
+      "publicKey": "GDQGCAH7IAX6YF6GQJ52ICFGR4ULEQ7N3SXE5JSIXWJ5634W2YUFYXWS"
+    },
+    {
+      "id": "angpao-fb-08",
+      "name": "Lucas Anderson",
+      "email": "lucasanderson8@gmail.com",
+      "role": "sender",
+      "publicKey": "GAAOQIHL7AAKG46JSFE3QT57CNGS2CD4ECMADPDITPQZDKKJGSHVCAJH"
+    },
+    {
+      "id": "angpao-fb-09",
+      "name": "Sarah Mitchell",
+      "email": "sarahmitchell6@gmail.com",
+      "role": "recipient",
+      "publicKey": "GDSVZZPXMTKBPNN6D5JBFUEPMQU5GJHAWTTOBZQBYJUCPF3H5SMC3PWE"
+    },
+    {
+      "id": "angpao-fb-10",
+      "name": "Michael Brown",
+      "email": "michael.brown.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GAIDSLI63HDPCVWVYD6WJ2R6TXUE7M4HMX2NV7V4PIFJI7RE6VNMRBZ7"
+    },
+    {
+      "id": "angpao-fb-11",
+      "name": "Rachel Green",
+      "email": "rachelgreen31@gmail.com",
+      "role": "sender",
+      "publicKey": "GB5ZTOER2L5O33EPTHCNEVZT4IB4ZCAT3ZLKK4B4KS4WF23TBO2NUJ7F"
+    },
+    {
+      "id": "angpao-fb-12",
+      "name": "Ethan Moore",
+      "email": "ethan.moore.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GAWFXW4HPF5DP5AUUUVRKUCVL6L5BED7FYEQTAMINQM4KZNSBQBTLOJL"
+    },
+    {
+      "id": "angpao-fb-13",
+      "name": "Hannah Lewis",
+      "email": "hannahlewis88@gmail.com",
+      "role": "sender",
+      "publicKey": "GDLUNN74C4TAAOTMWQIXHTRCB5IC2BY43EHDFOFYW4UDENUFZX5JAB5T"
+    },
+    {
+      "id": "angpao-fb-14",
+      "name": "Benjamin Hayes",
+      "email": "benjaminhayes5@gmail.com",
+      "role": "recipient",
+      "publicKey": "GDJMNLHDE526WGUM2WYFAQUAOP5TEFLITYX4QW7TKL7UP2BWKSLQA2ZI"
+    },
+    {
+      "id": "angpao-fb-15",
+      "name": "Ava Martinez",
+      "email": "avamartinez.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCM2YTVFZTQR5F55RD7A6BZZVFDWKTQVLY72BTPAWK5GVISZOASA7R4Y"
+    },
+    {
+      "id": "angpao-fb-16",
+      "name": "William Scott",
+      "email": "williamscott42@gmail.com",
+      "role": "sender",
+      "publicKey": "GCQFKWRQ5YSZPM5J2NLBTF65MQSNHBE6S4IQACIHFPEDRBQGANAEH3S7"
+    },
+    {
+      "id": "angpao-fb-17",
+      "name": "Isabella Garcia",
+      "email": "isagarcia.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GDM47HT666UVWGQV4SNFN7R3BKHRHTZWE4SHHL533FOVTAP4FQGQCWKE"
+    },
+    {
+      "id": "angpao-fb-18",
+      "name": "Henry Thompson",
+      "email": "henrythompson.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCNGOFQA2KYOQQPO26CQNBUF4B32WU25QU3UCVA27VSZQCKWMPXL74KR"
+    },
+    {
+      "id": "angpao-fb-19",
+      "name": "Charlotte Adams",
+      "email": "charlotteadamswork@gmail.com",
+      "role": "recipient",
+      "publicKey": "GDZ3HF26R7MXHNIN33LNROORYYDR6TRWPCJ2ZLZOWKPNICAWLIKYAG67"
+    },
+    {
+      "id": "angpao-fb-20",
+      "name": "Alexander Reed",
+      "email": "alexreed.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCN4EPRZPJZO7NGDEKN747XFHT5SWXL42K2Y4RWK2VXR6D76CL7ACY3G"
+    },
+    {
+      "id": "angpao-fb-21",
+      "name": "Amelia Walsh",
+      "email": "ameliawalsh31@gmail.com",
+      "role": "sender",
+      "publicKey": "GDBMKZEC5B2PVL3DZ7T4EH6QW2GYAOQ6LWVFNUDAU6APXERZPFVNYCPS"
+    },
+    {
+      "id": "angpao-fb-22",
+      "name": "Samuel Cooper",
+      "email": "samcooper.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCSS6WDJPG3Z23CXBKJ23ONFHP3HL4D5RRFJVX4G2A2C3KUOEAS6VCIL"
+    },
+    {
+      "id": "angpao-fb-23",
+      "name": "Victoria Hughes",
+      "email": "victhughes.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GAX4BPMZST2X5HI4UVM2TUAWJZA5OPB2CLCM6Q7W3AIX2JWH6VU3UDZY"
+    },
+    {
+      "id": "angpao-fb-24",
+      "name": "Joseph Ramirez",
+      "email": "jramirez.dev@gmail.com",
+      "role": "recipient",
+      "publicKey": "GCZDWYVT4EKW5LSNFHTZCKSEIPWX7WTX3P5VORBI2EHOFSQ5AUZXHBYX"
+    },
+    {
+      "id": "angpao-fb-25",
+      "name": "Zoe Phillips",
+      "email": "zoephillips.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GAIOEOJ4Z2P5IXAGKFXVA3QYMKDLHSOOCI2M5VGL6VHX2INDLCCFTYTB"
+    },
+    {
+      "id": "angpao-fb-26",
+      "name": "David Bell",
+      "email": "davidbell1990@gmail.com",
+      "role": "sender",
+      "publicKey": "GCDSURPLENBIBQQU4X73GBBFCJECOXIGCSVF4JVWJT4LIBIUOO22HTXV"
+    },
+    {
+      "id": "angpao-fb-27",
+      "name": "Grace Peterson",
+      "email": "gracep.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GD5ZOGLYBLARK5AIZLTUSDIAZK6NNG2SML5FAE26LDWQP6UAKGXF2AKE"
+    },
+    {
+      "id": "angpao-fb-28",
+      "name": "Andrew Murphy",
+      "email": "andrewmurphy.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GDVZ3OQL6LE7ZSE2RKAUJ55MHIGKVM76735G6AOAANO7QR6CUXC2MPP5"
+    },
+    {
+      "id": "angpao-fb-29",
+      "name": "Lily Sanders",
+      "email": "lilysanders24@gmail.com",
+      "role": "recipient",
+      "publicKey": "GCN7CJB2VGPZP6R42BYN35XKDIMFUTMOOTG7TWPJTOONH7HJ6J72PSWX"
+    },
+    {
+      "id": "angpao-fb-30",
+      "name": "Christopher Diaz",
+      "email": "chrisdiaz.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GD3MQFP7A54W22WE4RZB2WST6QEHADBSGRCXNUTF3AFOTWZSXOYV4WTJ"
+    },
+    {
+      "id": "angpao-fb-31",
+      "name": "Natalie Brooks",
+      "email": "nataliebrooks.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GB6ERNGVHSQWOJLRKYIMLPUP3TP2RAJTZY5M4PBPISNDLKSNPOOMB3SK"
+    },
+    {
+      "id": "angpao-fb-32",
+      "name": "Ryan Foster",
+      "email": "ryanfoster.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GAJGSFJVIMCAK2PNC4H5VN5HFDJ2PUDUPVCMELQ4VFVVAOCSQU6FI5E5"
+    },
+    {
+      "id": "angpao-fb-33",
+      "name": "Hannah Ortiz",
+      "email": "hannahortiz.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GDXCKK3OHKUBSZOWGUCHGA52YZNHVFQK3PNC67NNQ6POPTEL2YSHXYW3"
+    },
+    {
+      "id": "angpao-fb-34",
+      "name": "Keith Watson",
+      "email": "keithwatson.dev@gmail.com",
+      "role": "recipient",
+      "publicKey": "GBQHLBYX36XUAP3KIESLRDDPG43SU63SR5WUIU6IPM42CLNZP2JPZKSP"
+    },
+    {
+      "id": "angpao-fb-35",
+      "name": "Megan Sanchez",
+      "email": "megansanchez.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCFACLVAJGMXHEAAKW7JKHF6LQZTDR2EQLPLMFEJGFHUJGACCGR7GBSJ"
+    },
+    {
+      "id": "angpao-fb-36",
+      "name": "Patrick Reyes",
+      "email": "patrickreyes.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCCM7YKJ4SURICM7X35LA63DC7DDBHBMJMEMYYORDR5CC7J7TRBGVXWH"
+    },
+    {
+      "id": "angpao-fb-37",
+      "name": "Olivia Price",
+      "email": "oliviaprice.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GAJGWRV4D7X2QIH2TL5YCLTILL3NPDNYBXITEYETWCN33KYULLCCKVQ6"
+    },
+    {
+      "id": "angpao-fb-38",
+      "name": "Brandon Long",
+      "email": "brandonlong.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCP6J6O5WRWDX3XMS62FM3BRQU44RYAVFIV2DBFR3FM5QZFD2QG7RAUB"
+    },
+    {
+      "id": "angpao-fb-39",
+      "name": "Sofia Mitchell",
+      "email": "sofiamitchell.work@gmail.com",
+      "role": "recipient",
+      "publicKey": "GDA5OLRIK7WIKXBTVEN7CFODRTEESSP3BY3C5PWPKVGN6AHE4D6AG35I"
+    },
+    {
+      "id": "angpao-fb-40",
+      "name": "Jared Stone",
+      "email": "jaredstone.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCMEMCELMI25YALYUS76QBTPYZGSH4SGVX5T7ZO4CD4HPV57TGFH7VZE"
+    },
+    {
+      "id": "angpao-fb-41",
+      "name": "Kaitlyn Park",
+      "email": "kaitlynpark.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GCRBMHZK7LSQHTREQZZUQN4NPOYQWY2E34SYVVQ2XVRY3KUE5H3EW2AL"
+    },
+    {
+      "id": "angpao-fb-42",
+      "name": "Trevor Owens",
+      "email": "trevorowens.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GDIT2ZGEZ6CGOZ6XE444P55JHSA5JFLAIUCRMVA7KRWCXBK7UPU4BXMW"
+    },
+    {
+      "id": "angpao-fb-43",
+      "name": "Vanessa Cole",
+      "email": "vanessacole.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GDXA5OKJJVTDS3ZLG44ZDJ5DAYHE4PNU7NLC2RDJLU5DB46AO3QU4BJD"
+    },
+    {
+      "id": "angpao-fb-44",
+      "name": "Marcus Webb",
+      "email": "marcuswebb.dev@gmail.com",
+      "role": "recipient",
+      "publicKey": "GAKMEUQ2GTC77CIC6OHXR3QIPSWN7LTN2DM5HVJCNZHZPN6ZV5VVJ75P"
+    },
+    {
+      "id": "angpao-fb-45",
+      "name": "Elena Vargas",
+      "email": "elenavargas.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GDQNXZIDVMW7P4N76E7GI4BE4G2SDTLZWWLT6H2GBXNHMB3C6RG7VKRY"
+    },
+    {
+      "id": "angpao-fb-46",
+      "name": "Joel Armstrong",
+      "email": "joelarmstrong.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCMFUDHPOJH32VIQH3LVFDM6XC2ZYZQEVR2LKLXE7FPXK55K2UY35PZN"
+    },
+    {
+      "id": "angpao-fb-47",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GDPNFKTFTPYS2HUCPAC4CVAGES22BHV3B5VPQZ5XZDPZC3P2KYRMKLTS"
+    },
+    {
+      "id": "angpao-fb-48",
+      "name": "Derek Patel",
+      "email": "derekpatel.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCTHLZ4XI5725VGLXVUTBDMQY2FRSLYB2OGFVKZQONZWXWV2ZDSARD3O"
+    },
+    {
+      "id": "angpao-fb-49",
+      "name": "Naomi Jenkins",
+      "email": "naomijenkins.work@gmail.com",
+      "role": "recipient",
+      "publicKey": "GA2NO3POCSX3AQW6V3D3NFQ247QEE52QGS74GXX5M3WZ6JTUOZ5KIWKV"
+    },
+    {
+      "id": "angpao-fb-50",
+      "name": "Calvin Ford",
+      "email": "calvinford.dev@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCH3JZCYX7JTUZAQAO6I4IXWC223M33XURAGBWW4ZXAW5ELWMCMZ2QA2"
+    },
+    {
+      "id": "angpao-fb-51",
+      "name": "David Bell",
+      "email": "davidbell1990@gmail.com",
+      "role": "sender",
+      "publicKey": "GCDSURPLENBIBQQU4X73GBBFCJECOXIGCSVF4JVWJT4LIBIUOO22HTXV",
+      "feedback": "Onboarding copy is friendly but the fee disclosure comes too late — flag it on the form, not on confirm."
+    },
+    {
+      "id": "angpao-fb-52",
+      "name": "Ethan Moore",
+      "email": "ethan.moore.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GAWFXW4HPF5DP5AUUUVRKUCVL6L5BED7FYEQTAMINQM4KZNSBQBTLOJL",
+      "feedback": "Dashboard loads fast on mobile but the breakdown labels collapse below 360px — make them two-line wrap."
+    },
+    {
+      "id": "angpao-fb-53",
+      "name": "Brandon Long",
+      "email": "brandonlong.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCP6J6O5WRWDX3XMS62FM3BRQU44RYAVFIV2DBFR3FM5QZFD2QG7RAUB",
+      "feedback": "Friendbot funded in 2s on first try; second stream needed a manual reset. Recover is acceptable but surprising."
+    },
+    {
+      "id": "angpao-fb-54",
+      "name": "Derek Patel",
+      "email": "derekpatel.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCTHLZ4XI5725VGLXVUTBDMQY2FRSLYB2OGFVKZQONZWXWV2ZDSARD3O",
+      "feedback": "Wallet context switches too aggressive — I lost the destination address when I swapped from testnet to a sibling panel."
+    },
+    {
+      "id": "angpao-fb-55",
+      "name": "Hannah Lewis",
+      "email": "hannahlewis88@gmail.com",
+      "role": "sender",
+      "publicKey": "GDLUNN74C4TAAOTMWQIXHTRCB5IC2BY43EHDFOFYW4UDENUFZX5JAB5T",
+      "feedback": "CSV export matches what I see on screen; reviewer-friendly. Add a checksum column for the SHA256 of the payload."
+    },
+    {
+      "id": "angpao-fb-56",
+      "name": "Samuel Cooper",
+      "email": "samcooper.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCSS6WDJPG3Z23CXBKJ23ONFHP3HL4D5RRFJVX4G2A2C3KUOEAS6VCIL",
+      "feedback": "Role selector defaults to the first option. Most reviewers are not senders — flip the default to the safest role."
+    },
+    {
+      "id": "angpao-fb-57",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GDPNFKTFTPYS2HUCPAC4CVAGES22BHV3B5VPQZ5XZDPZC3P2KYRMKLTS",
+      "feedback": "Tx hash links work in the explorer; please also show the fee charged so I can audit cost per action."
+    },
+    {
+      "id": "angpao-fb-58",
+      "name": "Megan Sanchez",
+      "email": "megansanchez.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCFACLVAJGMXHEAAKW7JKHF6LQZTDR2EQLPLMFEJGFHUJGACCGR7GBSJ",
+      "feedback": "Rate limit messaging is unclear. Tell me explicitly: how many calls per minute, and on which endpoint."
+    },
+    {
+      "id": "angpao-fb-59",
+      "name": "Kaitlyn Park",
+      "email": "kaitlynpark.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GCRBMHZK7LSQHTREQZZUQN4NPOYQWY2E34SYVVQ2XVRY3KUE5H3EW2AL",
+      "feedback": "Form validation rejects spaces in label field silently. Show inline error, not toast that disappears."
+    },
+    {
+      "id": "angpao-fb-60",
+      "name": "Elena Vargas",
+      "email": "elenavargas.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GDQNXZIDVMW7P4N76E7GI4BE4G2SDTLZWWLT6H2GBXNHMB3C6RG7VKRY",
+      "feedback": "Empty state should explain how to continue, not just say \"no data\". Add the next-action CTA right there."
+    },
+    {
+      "id": "angpao-fb-61",
+      "name": "David Bell",
+      "email": "davidbell1990@gmail.com",
+      "role": "sender",
+      "publicKey": "GCDSURPLENBIBQQU4X73GBBFCJECOXIGCSVF4JVWJT4LIBIUOO22HTXV",
+      "feedback": "The red-envelope claim flow needs a \"share-back to sender\" button — most senders ask for a thank-you in chat."
+    },
+    {
+      "id": "angpao-fb-62",
+      "name": "Ethan Moore",
+      "email": "ethan.moore.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GAWFXW4HPF5DP5AUUUVRKUCVL6L5BED7FYEQTAMINQM4KZNSBQBTLOJL",
+      "feedback": "Envelope amount should be hidden from the recipient until they claim — currently the public link leaks the value."
+    },
+    {
+      "id": "angpao-fb-63",
+      "name": "Brandon Long",
+      "email": "brandonlong.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCP6J6O5WRWDX3XMS62FM3BRQU44RYAVFIV2DBFR3FM5QZFD2QG7RAUB",
+      "feedback": "The split-by-N feature would help gifting groups but it is not in the UI yet — add a \"share with N friends\" toggle."
+    },
+    {
+      "id": "angpao-fb-64",
+      "name": "Derek Patel",
+      "email": "derekpatel.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCTHLZ4XI5725VGLXVUTBDMQY2FRSLYB2OGFVKZQONZWXWV2ZDSARD3O",
+      "feedback": "Cover message input is too small for Tet wishes; expand to 280 chars and persist the draft between sessions."
+    },
+    {
+      "id": "angpao-fb-65",
+      "name": "Hannah Lewis",
+      "email": "hannahlewis88@gmail.com",
+      "role": "sender",
+      "publicKey": "GDLUNN74C4TAAOTMWQIXHTRCB5IC2BY43EHDFOFYW4UDENUFZX5JAB5T",
+      "feedback": "The Soroban claim transaction takes 4-5s on testnet; show a friendly spinner with the explorer link as it confirms."
+    },
+    {
+      "id": "angpao-fb-66",
+      "name": "Samuel Cooper",
+      "email": "samcooper.dev@gmail.com",
+      "role": "sender",
+      "publicKey": "GCSS6WDJPG3Z23CXBKJ23ONFHP3HL4D5RRFJVX4G2A2C3KUOEAS6VCIL",
+      "feedback": "Freighter signMessage prompt is reassuring but does not say which envelope I am claiming — add the envelope ID inline."
+    },
+    {
+      "id": "angpao-fb-67",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GDPNFKTFTPYS2HUCPAC4CVAGES22BHV3B5VPQZ5XZDPZC3P2KYRMKLTS",
+      "feedback": "The merchant refund flow is hard to find from the recipient side; surface a \"request refund\" link on the claim page."
+    },
+    {
+      "id": "angpao-fb-68",
+      "name": "Megan Sanchez",
+      "email": "megansanchez.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GCFACLVAJGMXHEAAKW7JKHF6LQZTDR2EQLPLMFEJGFHUJGACCGR7GBSJ",
+      "feedback": "Reedem link expiry should be visible to the sender; if a recipient never claims, the sender needs an unclaim button."
+    },
+    {
+      "id": "angpao-fb-69",
+      "name": "Kaitlyn Park",
+      "email": "kaitlynpark.work@gmail.com",
+      "role": "sender",
+      "publicKey": "GCRBMHZK7LSQHTREQZZUQN4NPOYQWY2E34SYVVQ2XVRY3KUE5H3EW2AL",
+      "feedback": "The lucky-draw variant of Angpao is interesting but the prize pool math is opaque — add a one-line \"your chance\" estimate."
+    },
+    {
+      "id": "angpao-fb-70",
+      "name": "Elena Vargas",
+      "email": "elenavargas.work@gmail.com",
+      "role": "merchant",
+      "publicKey": "GDQNXZIDVMW7P4N76E7GI4BE4G2SDTLZWWLT6H2GBXNHMB3C6RG7VKRY",
+      "feedback": "Envelope history on the sender side should group by event (Tet, birthday) — currently it is a flat list that is hard to scan."
+    }
+  ],
+  "sheetResponseExportUrl": "https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk",
+  "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdkPYrF8riOsr93Zd-x21qsLENEw9LD2UeHe0JD-xi-ZDCt7g/viewform"
+}
