@@ -42,6 +42,14 @@ type SessionRow = {
 const nonces: NonceRow[] = [];
 const sessions: SessionRow[] = [];
 
+function statementTargets(sql: string, verb: string, table: string): boolean {
+  return new RegExp(`^${verb}\\s+"?(?:\\w+_)?${table}"?`, 'i').test(sql.trim());
+}
+
+function selectsFrom(sql: string, table: string): boolean {
+  return /^select/i.test(sql.trim()) && statementTargets(sql.replace(/^[\s\S]*?\bfrom\b/i, 'from'), 'from', table);
+}
+
 type PgQuery =
   | string
   | {
@@ -69,21 +77,21 @@ function handleQuery(
     params = fallbackParams.length > 0 ? fallbackParams : (input.values ?? input.args ?? []);
   }
 
-  if (/^insert into "auth_nonces"/i.test(sql) || /insert into auth_nonces/i.test(sql)) {
+  if (statementTargets(sql, 'insert into', 'auth_nonces')) {
     const [nonce, publicKey, expiresAtRaw] = params as [string, string, string];
     // Drizzle serializes Date to ISO string when binding; convert back.
     const expiresAt = expiresAtRaw instanceof Date ? expiresAtRaw : new Date(expiresAtRaw);
     nonces.push({ nonce, public_key: publicKey, expires_at: expiresAt, consumed_at: null });
     return Promise.resolve({ rows: [], rowCount: 1 });
   }
-  if (/^update "auth_nonces"/i.test(sql) || /update auth_nonces/i.test(sql)) {
+  if (statementTargets(sql, 'update', 'auth_nonces')) {
     const [consumedAtRaw, nonce] = params as [string, string];
     const consumedAt = consumedAtRaw instanceof Date ? consumedAtRaw : new Date(consumedAtRaw);
     const row = nonces.find((n) => n.nonce === nonce);
     if (row) row.consumed_at = consumedAt;
     return Promise.resolve({ rows: [], rowCount: row ? 1 : 0 });
   }
-  if (/^select.*from "auth_nonces"/i.test(sql) || /from auth_nonces/i.test(sql)) {
+  if (selectsFrom(sql, 'auth_nonces')) {
     const publicKey = params[0] as string;
     const nonce = params[1] as string;
     const nowRaw = params[2];
@@ -101,7 +109,7 @@ function handleQuery(
       rowCount: row ? 1 : 0,
     });
   }
-  if (/^insert into "sessions"/i.test(sql) || /insert into sessions/i.test(sql)) {
+  if (statementTargets(sql, 'insert into', 'sessions')) {
     const [publicKey, expiresAtRaw] = params as [string, string];
     const expiresAt = expiresAtRaw instanceof Date ? expiresAtRaw : new Date(expiresAtRaw);
     const id = globalThis.crypto.randomUUID();
@@ -117,7 +125,7 @@ function handleQuery(
     // SQL's `returning` clause. For `returning "id"` that's just `[id]`.
     return Promise.resolve({ rows: [[id]], rowCount: 1 });
   }
-  if (/^delete from "sessions"/i.test(sql) || /delete from sessions/i.test(sql)) {
+  if (statementTargets(sql, 'delete from', 'sessions')) {
     const [id] = params as [string];
     const idx = sessions.findIndex((s) => s.id === id);
     if (idx >= 0) sessions.splice(idx, 1);
