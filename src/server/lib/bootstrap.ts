@@ -5,6 +5,7 @@ import { db } from '@/server/db/client';
 import { authNonces } from '@/server/db/schema/authNonces';
 import { withdrawals } from '@/server/db/schema/withdrawals';
 import { logger } from '@/server/lib/logger';
+import { expireOldGifts } from '@/server/service/gift.service';
 import { invoiceService } from '@/server/service/invoice.service';
 import { offrampService } from '@/server/service/offramp.service';
 import { withdrawalService } from '@/server/service/withdrawal.service';
@@ -36,11 +37,17 @@ function startExpirySweeper(): () => void {
     Promise.all([
       invoiceService.expireStale(),
       withdrawalService.expireStale(),
+      expireOldGifts(),
       db.delete(authNonces).where(lt(authNonces.expiresAt, new Date())).then((r) => r.rowCount ?? 0),
     ])
-      .then(([inv, wd, nonces]) => {
-        if (inv || wd || nonces)
-          logger.info('bootstrap.swept', { invoices: inv, withdrawals: wd, nonces });
+      .then(([inv, wd, expiredGifts, nonces]) => {
+        if (inv || wd || expiredGifts || nonces)
+          logger.info('bootstrap.swept', {
+            invoices: inv,
+            withdrawals: wd,
+            gifts: expiredGifts,
+            nonces,
+          });
       })
       .catch((err) => logger.error('bootstrap.sweeper_error', { err: String(err) }));
   }, 60_000);
