@@ -1,7 +1,7 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { and, desc, eq, or, sql } from 'drizzle-orm';
+import { and, desc, eq, lt, or, sql } from 'drizzle-orm';
 import { db } from '@/server/db/client';
-import { type Gift, type NewGift, gifts } from '@/server/db/schema/gifts';
+import { type Gift, type GiftStatus, type NewGift, gifts } from '@/server/db/schema/gifts';
 import { AppError } from '@/server/lib/http';
 import { stellar } from '@/server/config/stellar';
 import { Asset, Keypair, Claimant, Operation, TransactionBuilder, BASE_FEE } from '@stellar/stellar-sdk';
@@ -95,13 +95,48 @@ export async function createGift(params: CreateGiftParams): Promise<{ gift: Gift
   return { gift, secret };
 }
 
-export async function listGiftsBySender(senderPublicKey: string): Promise<Gift[]> {
-  return db
+export const GIFT_PAGE_SIZE_DEFAULT = 20;
+export const GIFT_PAGE_SIZE_MAX = 100;
+
+export type GiftPageQuery = {
+  status?: GiftStatus;
+  limit?: number;
+  cursor?: string;
+};
+
+export type GiftPage = {
+  gifts: Gift[];
+  nextCursor: string | null;
+};
+
+export async function listGiftsBySender(
+  senderPublicKey: string,
+  query: GiftPageQuery = {},
+): Promise<GiftPage> {
+  const pageSize = Math.min(query.limit ?? GIFT_PAGE_SIZE_DEFAULT, GIFT_PAGE_SIZE_MAX);
+  const cursorCreatedAt = query.cursor ? new Date(query.cursor) : null;
+  if (cursorCreatedAt && Number.isNaN(cursorCreatedAt.getTime())) {
+    throw new AppError('INVALID_INPUT', 'Invalid cursor', 400);
+  }
+
+  const filters = [eq(gifts.senderPublicKey, senderPublicKey)];
+  if (query.status) filters.push(eq(gifts.status, query.status));
+  if (cursorCreatedAt) filters.push(lt(gifts.createdAt, cursorCreatedAt));
+
+  const page = await db
     .select()
     .from(gifts)
-    .where(eq(gifts.senderPublicKey, senderPublicKey))
+    .where(and(...filters))
     .orderBy(desc(gifts.createdAt))
-    .limit(50);
+    .limit(pageSize + 1);
+
+  const hasMore = page.length > pageSize;
+  const visible = hasMore ? page.slice(0, pageSize) : page;
+  const lastVisible = visible.at(-1);
+  return {
+    gifts: visible,
+    nextCursor: hasMore && lastVisible ? lastVisible.createdAt.toISOString() : null,
+  };
 }
 
 export async function getGift(id: string): Promise<Gift> {

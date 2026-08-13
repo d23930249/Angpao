@@ -1,8 +1,10 @@
 import { StrKey } from '@stellar/stellar-sdk';
 import type { NextRequest } from 'next/server';
 import { z } from 'zod';
+import { GIFT_STATUSES } from '@/server/db/schema/gifts';
 import { AppError, created, ok } from '@/server/lib/http';
 import {
+  GIFT_PAGE_SIZE_MAX,
   claimGift,
   createGift,
   formatUsdcAmount,
@@ -34,11 +36,24 @@ const claimGiftSchema = z.object({
   destinationPublicKey: publicKeySchema,
 });
 
+const listGiftsQuerySchema = z.object({
+  status: z.enum(GIFT_STATUSES).optional(),
+  limit: z.coerce.number().int().min(1).max(GIFT_PAGE_SIZE_MAX).optional(),
+  cursor: z.string().datetime().optional(),
+});
+
 export async function listGifts(
-  _req: NextRequest,
+  req: NextRequest,
   ctx: { publicKey: string },
 ): Promise<ReturnType<typeof ok>> {
-  const giftList = await listGiftsBySender(ctx.publicKey);
+  const params = req.nextUrl.searchParams;
+  const query = listGiftsQuerySchema.parse({
+    status: params.get('status') ?? undefined,
+    limit: params.get('limit') ?? undefined,
+    cursor: params.get('cursor') ?? undefined,
+  });
+
+  const { gifts: giftList, nextCursor } = await listGiftsBySender(ctx.publicKey, query);
   const formatted = giftList.map((g) => ({
     ...g,
     amountUsdc: formatUsdcAmount(g.amountMinor),
@@ -47,7 +62,7 @@ export async function listGifts(
     createdAt: g.createdAt.toISOString(),
     updatedAt: g.updatedAt.toISOString(),
   }));
-  return ok({ gifts: formatted });
+  return ok({ gifts: formatted, nextCursor });
 }
 
 export async function createGiftHandler(
