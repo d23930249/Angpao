@@ -309,7 +309,10 @@
     "claiming": "Đang mở…",
     "claimSuccess": "Đã mở lì xì! Nhận được {amount} USDC!",
     "invalidSecret": "Sai mật khẩu — bao lì xì vẫn khoá",
-    "alreadyClaimed": "Bao lì xì này đã được mở"
+    "alreadyClaimed": "Bao lì xì này đã được mở",
+    "filterAll": "Tất cả",
+    "loadMore": "Tải thêm",
+    "loadingMore": "Đang tải…"
   },
   "Invoices": {
     "listTitle": "Hóa đơn",

@@ -274,7 +274,10 @@
     "claiming": "Opening…",
     "claimSuccess": "Lucky money opened! {amount} USDC claimed!",
     "invalidSecret": "Wrong secret — envelope stays locked",
-    "alreadyClaimed": "This envelope has already been opened"
+    "alreadyClaimed": "This envelope has already been opened",
+    "filterAll": "All",
+    "loadMore": "Load more",
+    "loadingMore": "Loading…"
   },
   "Dashboard": {
     "title": "My Gifts",

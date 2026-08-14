@@ -28,28 +28,70 @@ const STATUS_COLORS: Record<string, string> = {
   failed: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
 };
 
+const STATUS_FILTERS = ['all', 'pending', 'funded', 'claimed', 'expired'] as const;
+type StatusFilter = (typeof STATUS_FILTERS)[number];
+
 export function GiftListClient() {
   const t = useTranslations('Gifts');
   const [items, setItems] = useState<GiftItem[]>([]);
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchGifts = useCallback(async () => {
+  const fetchPage = useCallback(async (status: StatusFilter, cursor: string | null) => {
+    const params = new URLSearchParams();
+    if (status !== 'all') params.set('status', status);
+    if (cursor) params.set('cursor', cursor);
+    const query = params.toString();
+
     try {
-      const res = await fetch('/api/gifts');
+      const res = await fetch(`/api/gifts${query ? `?${query}` : ''}`);
       const json = await res.json();
       if (!json.ok) throw new Error(json.error?.message ?? 'Failed to load');
-      setItems(json.data.gifts ?? []);
+      const page: GiftItem[] = json.data.gifts ?? [];
+      setItems((previous) => (cursor ? [...previous, ...page] : page));
+      setNextCursor(json.data.nextCursor ?? null);
+      setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error loading gifts');
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   }, []);
 
   useEffect(() => {
-    fetchGifts();
-  }, [fetchGifts]);
+    setLoading(true);
+    fetchPage(statusFilter, null);
+  }, [fetchPage, statusFilter]);
+
+  const loadMore = () => {
+    if (!nextCursor || loadingMore) return;
+    setLoadingMore(true);
+    fetchPage(statusFilter, nextCursor);
+  };
+
+  const filterBar = (
+    <div className="mb-4 flex flex-wrap gap-2" data-testid="gift-status-filter">
+      {STATUS_FILTERS.map((status) => (
+        <button
+          key={status}
+          type="button"
+          onClick={() => setStatusFilter(status)}
+          aria-pressed={statusFilter === status}
+          className={`rounded-full px-3 py-1 text-xs font-medium capitalize transition-colors ${
+            statusFilter === status
+              ? 'bg-red-600 text-white'
+              : 'bg-muted text-muted-foreground hover:bg-muted/70'
+          }`}
+        >
+          {status === 'all' ? t('filterAll') : t(`status.${status}`)}
+        </button>
+      ))}
+    </div>
+  );
 
   if (loading) {
     return (
@@ -74,63 +116,83 @@ export function GiftListClient() {
 
   if (items.length === 0) {
     return (
-      <Card className="border-red-100 dark:border-red-900/30" data-testid="empty-state">
-        <CardContent className="py-10 text-center">
-          <Gift className="mx-auto mb-3 h-10 w-10 text-red-300" />
-          <p className="text-sm text-muted-foreground">{t('empty')}</p>
-          <Button asChild className="mt-4 bg-red-600 text-white hover:bg-red-700">
-            <Link href="/gifts/new">Send your first lucky money</Link>
-          </Button>
-        </CardContent>
-      </Card>
+      <div>
+        {filterBar}
+        <Card className="border-red-100 dark:border-red-900/30" data-testid="empty-state">
+          <CardContent className="py-10 text-center">
+            <Gift className="mx-auto mb-3 h-10 w-10 text-red-300" />
+            <p className="text-sm text-muted-foreground">{t('empty')}</p>
+            <Button asChild className="mt-4 bg-red-600 text-white hover:bg-red-700">
+              <Link href="/gifts/new">Send your first lucky money</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   return (
-    <div className="space-y-3">
-      {items.map((gift) => (
-        <Link
-          key={gift.id}
-          href={`/gifts/${gift.id}`}
-          className="block"
-          data-testid="gift-item"
-        >
-          <Card className="border-red-100 transition-all hover:border-red-300 hover:shadow-sm dark:border-red-900/30">
-            <CardContent className="py-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
-                    <Gift className="h-5 w-5 text-red-600" />
+    <div>
+      {filterBar}
+      <div className="space-y-3">
+        {items.map((gift) => (
+          <Link key={gift.id} href={`/gifts/${gift.id}`} className="block" data-testid="gift-item">
+            <Card className="border-red-100 transition-all hover:border-red-300 hover:shadow-sm dark:border-red-900/30">
+              <CardContent className="py-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+                      <Gift className="h-5 w-5 text-red-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">{gift.recipientName}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(gift.createdAt).toLocaleDateString('en', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground">{gift.recipientName}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(gift.createdAt).toLocaleDateString('en', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
-                    </p>
+                  <div className="flex flex-col items-end gap-1">
+                    <p className="text-lg font-bold text-red-600">{gift.amountUsdc} USDC</p>
+                    <span
+                      className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium capitalize ${STATUS_COLORS[gift.status] ?? ''}`}
+                    >
+                      {gift.status}
+                    </span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-1">
-                  <p className="text-lg font-bold text-red-600">{gift.amountUsdc} USDC</p>
-                  <span
-                    className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium capitalize ${STATUS_COLORS[gift.status] ?? ''}`}
-                  >
-                    {gift.status}
-                  </span>
-                </div>
-              </div>
-              {gift.message && (
-                <p className="mt-2 truncate text-xs italic text-muted-foreground">
-                  "{gift.message}"
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        </Link>
-      ))}
+                {gift.message && (
+                  <p className="mt-2 truncate text-xs italic text-muted-foreground">
+                    "{gift.message}"
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+        {nextCursor && (
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={loadMore}
+            disabled={loadingMore}
+            data-testid="load-more-gifts"
+          >
+            {loadingMore ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {t('loadingMore')}
+              </>
+            ) : (
+              t('loadMore')
+            )}
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
