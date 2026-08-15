@@ -3,6 +3,7 @@ import { createGiftHandler, listGifts } from '@/server/controller/gift.controlle
 import { compose } from '@/server/middleware/compose';
 import { withAuth } from '@/server/middleware/withAuth';
 import { withError } from '@/server/middleware/withError';
+import { withRateLimit } from '@/server/middleware/withRateLimit';
 
 export const GET = compose(
   withError,
@@ -11,5 +12,6 @@ export const GET = compose(
 
 export const POST = compose(
   withError,
+  withRateLimit,
   withAuth,
 )((req: NextRequest, ctx) => createGiftHandler(req, ctx as { publicKey: string }));
