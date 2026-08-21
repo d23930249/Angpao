@@ -10,6 +10,7 @@ with how to boot it, then walks the exact files a voucher passes through when it
 redeemed, then the architecture, then deploy.
 
 **Live (Stellar Mainnet):** https://angpao-three.vercel.app
+**Operator wallet:** [`GDMC2BK232QPTFUABB47IJ3MX3H55GHJSAXX6ALOIETHDKT44VZMKDPT`](https://stellar.expert/explorer/public/account/GDMC2BK232QPTFUABB47IJ3MX3H55GHJSAXX6ALOIETHDKT44VZMKDPT)
 **Escrow contract:** [`CBRSSJN6ZWLV53UCDGAR3ZXHO4O63NACKHYTJOFVKVR4LBBGZGA5LVZD`](https://stellar.expert/explorer/public/contract/CBRSSJN6ZWLV53UCDGAR3ZXHO4O63NACKHYTJOFVKVR4LBBGZGA5LVZD)
 
 ![Angpao landing](screen-shot/ui-01-landing-v2.jpg)
